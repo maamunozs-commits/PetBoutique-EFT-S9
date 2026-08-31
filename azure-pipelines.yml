@@ -1,19 +1,85 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
+# PROPUESTA LOCAL: requiere revisar y publicar los cambios.
 trigger:
-- master
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  branches:
+    include: [master]
+pr:
+  branches:
+    include: [master]
+parameters:
+- name: enableDeployment
+  type: boolean
+  default: false
+stages:
+- stage: CI
+  jobs:
+  - job: BuildAndVerify
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - task: UseDotNet@2
+      inputs:
+        packageType: sdk
+        version: 10.0.x
+    - bash: |
+        set -euo pipefail
+        dotnet restore pipelines-dotnet-core.csproj
+        dotnet build pipelines-dotnet-core.csproj -c Release --no-restore
+        dotnet publish pipelines-dotnet-core.csproj -c Release \
+          -r linux-x64 --self-contained true -o "$BUILD_ARTIFACTSTAGINGDIRECTORY/app"
+        python3 scripts/smoke_test.py \
+          --executable "$BUILD_ARTIFACTSTAGINGDIRECTORY/app/pipelines-dotnet-core" \
+          --cwd "$BUILD_ARTIFACTSTAGINGDIRECTORY/app" \
+          --junit "$BUILD_ARTIFACTSTAGINGDIRECTORY/smoke.xml"
+      displayName: Compilar, publicar y probar HTTP
+    - task: PublishTestResults@2
+      condition: always()
+      inputs:
+        testResultsFormat: JUnit
+        testResultsFiles: '$(Build.ArtifactStagingDirectory)/smoke.xml'
+        failTaskOnFailedTests: true
+        failTaskOnMissingResultsFile: true
+    - bash: |
+        set -euo pipefail
+        cd "$BUILD_ARTIFACTSTAGINGDIRECTORY"
+        printf '%s\n' "$BUILD_SOURCEVERSION" > app/COMMIT.txt
+        tar -C app -czf app.tar.gz .
+        sha256sum app.tar.gz > app.tar.gz.sha256
+        mkdir package
+        cp app.tar.gz app.tar.gz.sha256 app/COMMIT.txt package/
+      displayName: Empaquetar el artefacto validado
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/package'
+        artifact: application
+- ${{ if eq(parameters.enableDeployment, true) }}:
+  - stage: CD
+    dependsOn: CI
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+    - job: DeployLab
+      # Agente Linux confiable con salida desde la IP /32 autorizada.
+      pool:
+        name: duoc-deploy
+        demands:
+        - Agent.OS -equals Linux
+      steps:
+      - checkout: none
+      - download: current
+        artifact: application
+      - task: CopyFilesOverSSH@0
+        inputs:
+          sshEndpoint: ssh-isy2201-lab
+          sourceFolder: '$(Pipeline.Workspace)/application'
+          contents: '**'
+          targetFolder: '/home/azureuser/isy2201-incoming/$(Build.BuildId)'
+          cleanTargetFolder: false
+      - task: SSH@0
+        inputs:
+          sshEndpoint: ssh-isy2201-lab
+          runOptions: inline
+          inline: |
+            set -eu
+            sudo /usr/local/sbin/isy2201-deploy '$(Build.BuildId)'
+          failOnStdErr: false

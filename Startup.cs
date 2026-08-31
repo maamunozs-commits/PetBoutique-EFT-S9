@@ -27,7 +27,8 @@ namespace pipelines_dotnet_core
               });
 
 
-            services.AddRazorPages();
+            services.AddControllersWithViews();
+            services.AddHealthChecks();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +53,7 @@ namespace pipelines_dotnet_core
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/health");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
