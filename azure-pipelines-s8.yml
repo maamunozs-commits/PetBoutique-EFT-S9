@@ -2,7 +2,7 @@ parameters:
 - name: runDeployment
   displayName: Desplegar en staging y produccion academica
   type: boolean
-  default: false
+  default: true
 trigger:
   branches:
     include: [codex/petboutique-exp3-s8]
