@@ -1,3 +1,8 @@
+parameters:
+- name: runDeployment
+  displayName: Desplegar en staging y produccion academica
+  type: boolean
+  default: false
 trigger:
   branches:
     include: [codex/petboutique-exp3-s8]
@@ -47,29 +52,30 @@ stages:
     - publish: petboutique-s8
       artifact: petboutique-s8-release
       condition: succeededOrFailed()
-- stage: Staging
-  dependsOn: CI
-  condition: succeeded()
-  jobs:
-  - deployment: DeployStaging
-    environment: petboutique-s8-staging
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - template: petboutique-s8/pipeline-deploy.yml
-            parameters:
-              target: staging
-- stage: Production
-  dependsOn: Staging
-  condition: succeeded()
-  jobs:
-  - deployment: DeployProduction
-    environment: petboutique-s8-production
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - template: petboutique-s8/pipeline-deploy.yml
-            parameters:
-              target: production
+- ${{ if eq(parameters.runDeployment, true) }}:
+  - stage: Staging
+    dependsOn: CI
+    condition: succeeded()
+    jobs:
+    - deployment: DeployStaging
+      environment: petboutique-s8-staging
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: petboutique-s8/pipeline-deploy.yml
+              parameters:
+                target: staging
+  - stage: Production
+    dependsOn: Staging
+    condition: succeeded()
+    jobs:
+    - deployment: DeployProduction
+      environment: petboutique-s8-production
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: petboutique-s8/pipeline-deploy.yml
+              parameters:
+                target: production
