@@ -1,0 +1,39 @@
+services:
+  api:
+    image: ${API_IMAGE:?API_IMAGE requerido}
+    restart: unless-stopped
+    mem_limit: 320m
+    cpus: 0.75
+    pids_limit: 128
+    read_only: true
+    tmpfs: [/tmp:size=32m]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [backend]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: '2'}
+  web:
+    image: ${WEB_IMAGE:?WEB_IMAGE requerido}
+    restart: unless-stopped
+    ports: ['127.0.0.1:${WEB_PORT:-8080}:8080']
+    mem_limit: 96m
+    cpus: 0.25
+    pids_limit: 64
+    read_only: true
+    tmpfs: [/var/cache/nginx:size=16m, /var/run:size=4m, /tmp:size=8m]
+    security_opt: [no-new-privileges:true]
+    depends_on: [api]
+    networks: [backend]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, 'http://127.0.0.1:8080/health-web']
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: '2'}
+networks:
+  backend:
+    driver: bridge

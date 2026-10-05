@@ -1,0 +1,8 @@
+/var/log/petboutique-s8/*.jsonl {
+  daily
+  rotate 7
+  compress
+  missingok
+  notifempty
+  create 0640 root root
+}

@@ -1,0 +1,44 @@
+parameters:
+- name: target
+  type: string
+  values: [staging, production]
+steps:
+- checkout: self
+- download: current
+  artifact: petboutique-s8-release
+- task: DownloadSecureFile@1
+  name: vmKey
+  inputs:
+    secureFile: petboutique-lab-ed25519-s8
+- bash: |
+    set -euo pipefail
+    chmod 600 "$SSH_KEY"
+    mkdir -p ~/.ssh
+    cp known_hosts ~/.ssh/known_hosts
+    cd "$RELEASE"
+    sha256sum -c release.sha256
+    ssh -i "$SSH_KEY" -o BatchMode=yes "$DEST" 'mkdir -p /home/azureuser/petboutique-s8/incoming'
+    scp -i "$SSH_KEY" release.tar.gz release.sha256 "$DEST:$(remoteRoot)/incoming/"
+    ssh -i "$SSH_KEY" -o BatchMode=yes "$DEST" 'cd /home/azureuser/petboutique-s8/incoming && sha256sum -c release.sha256 && tar -xzf release.tar.gz -C .. && cd .. && sudo docker load -i images.tar.gz && bash scripts/deploy.sh ${{ parameters.target }} s8-$(Build.BuildId)'
+    if [ '${{ parameters.target }}' = production ]; then
+      ssh -i "$SSH_KEY" -o BatchMode=yes "$DEST" 'cd /home/azureuser/petboutique-s8 && bash scripts/install-monitor.sh && sudo docker compose -p petboutique-s8-staging --env-file state/staging.env -f compose.yaml down'
+      python3 verify.py http://$(vmHost) > evidence/public-tests.json
+    fi
+  workingDirectory: $(Build.SourcesDirectory)/petboutique-s8
+  env:
+    SSH_KEY: $(vmKey.secureFilePath)
+    RELEASE: $(Pipeline.Workspace)/petboutique-s8-release
+    DEST: $(vmUser)@$(vmHost)
+  displayName: Desplegar y validar ${{ parameters.target }}
+- bash: |
+    mkdir -p "$OUT"
+    scp -r -i "$SSH_KEY" -o BatchMode=yes "$DEST:$(remoteRoot)/evidence/." "$OUT/"
+  condition: always()
+  env:
+    SSH_KEY: $(vmKey.secureFilePath)
+    DEST: $(vmUser)@$(vmHost)
+    OUT: $(Build.ArtifactStagingDirectory)/deployment-${{ parameters.target }}
+  displayName: Recopilar evidencia remota
+- publish: $(Build.ArtifactStagingDirectory)/deployment-${{ parameters.target }}
+  artifact: deployment-${{ parameters.target }}
+  condition: always()

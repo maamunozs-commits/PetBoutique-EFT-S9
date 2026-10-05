@@ -1,0 +1,12 @@
+[Unit]
+Description=PetBoutique comprobacion de salud y recursos
+After=docker.service apache2.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/petboutique-s8/monitor.py
+TimeoutStartSec=45
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/log/petboutique-s8
+ProtectHome=true
+PrivateTmp=true
