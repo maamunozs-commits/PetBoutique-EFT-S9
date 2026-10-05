@@ -5,7 +5,7 @@ parameters:
   default: true
 trigger:
   branches:
-    include: [codex/petboutique-exp3-s8]
+    include: [maamunozs/petboutique-exp3-s8]
 variables:
   vmHost: '20.80.27.195'
   vmUser: 'azureuser'

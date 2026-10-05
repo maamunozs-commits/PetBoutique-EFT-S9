@@ -1,0 +1,81 @@
+parameters:
+- name: runDeployment
+  displayName: Desplegar en staging y produccion academica
+  type: boolean
+  default: true
+trigger:
+  branches:
+    include: [maamunozs/petboutique-exp3-s8]
+variables:
+  vmHost: '20.80.27.195'
+  vmUser: 'azureuser'
+  remoteRoot: '/home/azureuser/petboutique-s8'
+pool:
+  vmImage: ubuntu-24.04
+stages:
+- stage: CI
+  jobs:
+  - job: BuildTest
+    steps:
+    - checkout: self
+    - bash: |
+        set -euo pipefail
+        cd petboutique-s8
+        mkdir -p evidence bundle
+        export API_IMAGE=petboutique/api:s8-$(Build.BuildId)
+        export WEB_IMAGE=petboutique/web:s8-$(Build.BuildId)
+        export WEB_PORT=8080
+        docker build -t "$API_IMAGE" api
+        docker build -t "$WEB_IMAGE" web
+        docker compose -p petboutique-s8-ci up -d
+        ready=0
+        for i in $(seq 1 30); do
+          if curl -fsS http://127.0.0.1:8080/health; then ready=1; break; fi
+          sleep 2
+        done
+        test "$ready" = 1
+        python3 verify.py http://127.0.0.1:8080 > evidence/ci-tests.json
+        docker image inspect "$API_IMAGE" "$WEB_IMAGE" > evidence/images.json
+        docker save "$API_IMAGE" "$WEB_IMAGE" | gzip > bundle/images.tar.gz
+        cp -r scripts compose.yaml verify.py bundle/
+        printf '%s\n' '$(Build.SourceVersion)' > bundle/COMMIT.txt
+        tar -czf release.tar.gz -C bundle .
+        sha256sum release.tar.gz > release.sha256
+      displayName: Compilar imagenes y validar 10 casos
+    - bash: |
+        cd petboutique-s8
+        export API_IMAGE=petboutique/api:s8-$(Build.BuildId) WEB_IMAGE=petboutique/web:s8-$(Build.BuildId)
+        docker compose -p petboutique-s8-ci logs --no-color > evidence/ci-containers.log
+        docker compose -p petboutique-s8-ci down
+      condition: always()
+      displayName: Registrar y limpiar agente
+    - publish: petboutique-s8
+      artifact: petboutique-s8-release
+      condition: succeededOrFailed()
+- ${{ if eq(parameters.runDeployment, true) }}:
+  - stage: Staging
+    dependsOn: CI
+    condition: succeeded()
+    jobs:
+    - deployment: DeployStaging
+      environment: petboutique-s8-staging
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: petboutique-s8/pipeline-deploy.yml
+              parameters:
+                target: staging
+  - stage: Production
+    dependsOn: Staging
+    condition: succeeded()
+    jobs:
+    - deployment: DeployProduction
+      environment: petboutique-s8-production
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: petboutique-s8/pipeline-deploy.yml
+              parameters:
+                target: production
