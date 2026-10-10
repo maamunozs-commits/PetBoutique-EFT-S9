@@ -40,7 +40,7 @@ CHANGED=1
 compose "$NEXT" up -d --no-build --pull never --force-recreate > "$REPORT/deploy.log" 2>&1
 READY=0
 for attempt in $(seq 1 30); do
-  if curl -fsS "http://127.0.0.1:$PORT/health" > /dev/null; then READY=1; break; fi
+  if curl --connect-timeout 3 --max-time 5 -fsS "http://127.0.0.1:$PORT/health" > /dev/null; then READY=1; break; fi
   sleep 2
 done
 [[ "$READY" == 1 ]]
