@@ -1,0 +1,14 @@
+API_IMAGE=petboutique/api:s8-6
+WEB_IMAGE=petboutique/web:s8-6
+WEB_PORT=8080
+NAME                   IMAGE                  COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+petboutique-s6-api-1   petboutique/api:s8-6   "dotnet PetBoutique.…"   api       2 minutes ago   Up 2 minutes             8080/tcp
+petboutique-s6-web-1   petboutique/web:s8-6   "/docker-entrypoint.…"   web       2 minutes ago   Up 2 minutes (healthy)   80/tcp, 127.0.0.1:8080->8080/tcp
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT   MEM %     NET I/O           BLOCK I/O     PIDS
+6dfaa45a6495   petboutique-s6-web-1   0.00%     3.316MiB / 96MiB    3.45%     24.3kB / 27.7kB   20.4MB / 0B   3
+d2d905050ee2   petboutique-s6-api-1   0.07%     29.7MiB / 320MiB    9.28%     12.7kB / 10.9kB   364MB / 0B    14
+               total        used        free      shared  buff/cache   available
+Mem:             842         645          71          16         275         196
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        61G  5.1G   56G   9% /

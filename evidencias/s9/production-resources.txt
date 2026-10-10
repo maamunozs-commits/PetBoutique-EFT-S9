@@ -1,0 +1,5 @@
+CONTAINER ID   NAME                           CPU %     MEM USAGE / LIMIT   MEM %     NET I/O           BLOCK I/O         PIDS
+1592158d5107   petboutique-s6-web-1           0.00%     4.711MiB / 96MiB    4.91%     10.6kB / 12.6kB   3.55MB / 0B       3
+480a06ce2a4e   petboutique-s6-api-1           0.03%     22.73MiB / 320MiB   7.10%     5.26kB / 4.58kB   48.1MB / 0B       15
+4016f8173ae7   petboutique-s8-staging-web-1   0.00%     4.504MiB / 96MiB    4.69%     11.8kB / 13.5kB   9.11MB / 0B       3
+28b720deda69   petboutique-s8-staging-api-1   0.01%     7.805MiB / 320MiB   2.44%     5.81kB / 4.83kB   90.2MB / 16.5MB   14

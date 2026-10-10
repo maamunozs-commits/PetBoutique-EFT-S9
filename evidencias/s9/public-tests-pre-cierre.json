@@ -1,0 +1,78 @@
+{
+  "base": "http://20.80.27.195",
+  "utc": "2026-10-10T15:55:07Z",
+  "passed": 10,
+  "total": 10,
+  "results": [
+    {
+      "path": "/",
+      "expected": 200,
+      "actual": 200,
+      "passed": true,
+      "seconds": 0.293
+    },
+    {
+      "path": "/health",
+      "expected": 200,
+      "actual": 200,
+      "passed": true,
+      "seconds": 0.279
+    },
+    {
+      "path": "/health-web",
+      "expected": 200,
+      "actual": 200,
+      "passed": true,
+      "seconds": 0.29
+    },
+    {
+      "path": "/missing",
+      "expected": 404,
+      "actual": 404,
+      "passed": true,
+      "seconds": 0.283
+    },
+    {
+      "path": "/api/catalog",
+      "expected": 200,
+      "actual": 200,
+      "passed": true,
+      "seconds": 0.276
+    },
+    {
+      "path": "/api/catalog/quote?productId=1&quantity=2",
+      "expected": 200,
+      "actual": 200,
+      "passed": true,
+      "seconds": 0.391
+    },
+    {
+      "path": "/api/catalog/quote?productId=1&quantity=0",
+      "expected": 400,
+      "actual": 400,
+      "passed": true,
+      "seconds": 0.292
+    },
+    {
+      "path": "/api/catalog/quote?productId=1&quantity=11",
+      "expected": 400,
+      "actual": 400,
+      "passed": true,
+      "seconds": 0.281
+    },
+    {
+      "path": "/api/catalog/quote?productId=999&quantity=1",
+      "expected": 404,
+      "actual": 404,
+      "passed": true,
+      "seconds": 0.29
+    },
+    {
+      "path": "/api/catalog/quote?productId=1&quantity=x",
+      "expected": 400,
+      "actual": 400,
+      "passed": true,
+      "seconds": 0.328
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+Sat Oct 10 15:57:01 UTC 2026
+ 15:57:01 up 39 days, 16:42,  1 user,  load average: 0.23, 2.98, 3.53
+               total        used        free      shared  buff/cache   available
+Mem:             842         481          74          15         436         361
+Swap:           1023         184         839
+NAME                  TYPE  SIZE   USED PRIO
+/swapfile-petboutique file 1024M 184.4M   -2
+API_IMAGE=petboutique/api:s8-8
+WEB_IMAGE=petboutique/web:s8-8
+WEB_PORT=8080
+NAME                   IMAGE                  COMMAND                  SERVICE   CREATED              STATUS                        PORTS
+petboutique-s6-api-1   petboutique/api:s8-8   "dotnet PetBoutique.…"   api       About a minute ago   Up About a minute             8080/tcp
+petboutique-s6-web-1   petboutique/web:s8-8   "/docker-entrypoint.…"   web       About a minute ago   Up About a minute (healthy)   80/tcp, 127.0.0.1:8080->8080/tcp
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT   MEM %     NET I/O           BLOCK I/O     PIDS
+1592158d5107   petboutique-s6-web-1   0.00%     4.609MiB / 96MiB    4.80%     24.1kB / 27.6kB   3.86MB / 0B   3
+480a06ce2a4e   petboutique-s6-api-1   0.01%     27.12MiB / 320MiB   8.47%     12.7kB / 10.9kB   49.8MB / 0B   17
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        61G  6.2G   55G  11% /

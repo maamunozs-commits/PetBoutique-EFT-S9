@@ -1,0 +1,179 @@
+- banner:
+  - navigation:
+    - link "Skip to main content":
+      - /url: "#skip-to-main-content"
+    - link "Azure DevOps organization home page":
+      - /url: /maamunozs
+      - generic: Azure DevOps
+    - navigation "Breadcrumb":
+      - generic "Breadcrumb Item":
+        - link "maamunozs":
+          - /url: /maamunozs/
+          - generic: maamunozs
+        - generic: /
+        - link "ISY2201-Pipeline":
+          - /url: /maamunozs/ISY2201-Pipeline
+          - generic: ISY2201-Pipeline
+        - generic: /
+        - link "Pipelines":
+          - /url: /maamunozs/ISY2201-Pipeline/_build
+          - generic: Pipelines
+        - generic: /
+        - link "PetBoutique-Exp3-S8":
+          - /url: /maamunozs/ISY2201-Pipeline/_build?definitionId=4&_a=summary
+          - generic: PetBoutique-Exp3-S8
+        - generic: /
+        - link "20261005.3":
+          - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6
+          - generic: "20261005.3"
+    - search "Project-wide search":
+      - button "Get search results":
+        - generic: 
+      - textbox "Search filter lists or suggestions appear below.":
+        - /placeholder: Search
+  - menubar:
+    - menuitem "My Work":
+      - button "My Work":
+        - generic: 
+    - menuitem "Marketplace":
+      - button "Marketplace":
+        - generic: 
+    - menuitem "Help":
+      - button "Help":
+        - generic: 
+    - menuitem "User settings":
+      - button "User settings":
+        - generic: 
+    - menuitem "Account manager for MATIAS ANDRES MUNOZ SOTO":
+      - button "Account manager for MATIAS ANDRES MUNOZ SOTO":
+        - generic: Account manager for MATIAS ANDRES MUNOZ SOTO
+- navigation "Project ISY2201-Pipeline":
+  - img "ISY2201-Pipeline"
+  - generic: ISY2201-Pipeline
+  - button "Create":
+    - generic: 
+  - menubar:
+    - menuitem "Overview":
+      - generic: Overview
+    - menuitem "Boards":
+      - generic: Boards
+    - menuitem "Repos":
+      - generic: Repos
+    - menuitem "Pipelines" [expanded]:
+      - generic: Pipelines
+    - menu:
+      - menuitem "Pipelines":
+        - generic: 
+        - generic: Pipelines
+      - menuitem "Environments":
+        - generic: 
+        - generic: Environments
+      - menuitem "Library":
+        - generic: 
+        - generic: Library
+    - menuitem "Test Plans":
+      - generic: Test Plans
+    - menuitem "Artifacts":
+      - generic: Artifacts
+  - link "Project settings":
+    - /url: /maamunozs/ISY2201-Pipeline/_settings/
+    - img "Project settings":
+      - generic: 
+    - generic: Project settings
+  - button "Show less information":
+    - generic: 
+- main:
+  - img "Success"
+  - heading "#20261005.3 • Usar usuario maamunozs en la rama de semana 8" [level=1]:
+    - generic: "#20261005.3 • Usar usuario maamunozs en la rama de semana 8"
+  - generic: 
+  - generic: PetBoutique-Exp3-S8
+  - menubar:
+    - menuitem "Run new":
+      - generic: Run new
+    - menuitem "More actions":
+      - generic: 
+  - generic: 
+  - generic: This run is being retained as one of 3 recent runs by pipeline.
+  - button "View retention leases":
+    - generic: View retention leases
+  - tablist:
+    - tab "Summary" [selected]:
+      - generic: Summary
+    - tab "Environments":
+      - generic: Environments
+    - tab "Associated pipelines":
+      - generic: Associated pipelines
+  - region "Summary":
+    - generic "Individual CI for by MATIAS ANDRES MUNOZ SOTO":
+      - generic: Individual CI
+      - text: by
+      - img "MATIAS ANDRES MUNOZ SOTO"
+      - text: MATIAS ANDRES MUNOZ SOTO
+      - link "View 65 changes":
+        - /url: /maamunozs/ISY2201-Pipeline/_traceability/runview/changes?currentRunId=6
+      - button "Parameters":
+        - generic: Parameters
+    - generic: 
+    - generic "Today at 22:14 4 oct 2026 at 22:14 GMT-3":
+      - time: Today at 22:14
+    - generic: 
+    - generic "4m 31s 4 oct 2026 at 22:15 GMT-3": 4m 31s
+    - generic: Repository and version
+    - link "Repository ISY2201-Pipeline":
+      - /url: /maamunozs/ISY2201-Pipeline/_git/ISY2201-Pipeline
+      - generic: 
+      - text: ISY2201-Pipeline
+    - link "Branch maamunozs/petboutique-exp3-s8":
+      - /url: /maamunozs/ISY2201-Pipeline/_git/ISY2201-Pipeline?version=GBmaamunozs/petboutique-exp3-s8
+      - generic: 
+      - text: maamunozs/petboutique-exp3-s8
+    - link "Source version 649b7764":
+      - /url: /maamunozs/ISY2201-Pipeline/_git/ISY2201-Pipeline/commit/649b776430e91cd88f8922f7acd3898f07ba20a3/
+      - generic: 
+      - text: 649b7764
+    - generic: Related
+    - generic: 
+    - text: 0 work items
+    - link "3 published":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=artifacts&pathAsName=false
+      - generic: 
+      - generic "3 published"
+    - generic: Tests and coverage
+    - link "Get started":
+      - /url: https://go.microsoft.com/fwlink/?linkid=2086578
+      - generic: 
+      - text: Get started
+  - tablist:
+    - tab "Stages" [selected]:
+      - generic: Stages
+    - tab "Jobs":
+      - generic: Jobs
+  - link "CI, Success, 1 job completed, 4 oct 2026 at 22:15 GMT-3":
+    - link "CI":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=logs&si=ae4f8708-9994-57d3-c2d7-b892156e7812
+    - generic: 1 job completed
+    - generic "1m 26s 4 oct 2026 at 22:15 GMT-3": 1m 26s
+    - link "1 artifact":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=artifacts&pathAsName=false
+      - generic: 
+      - generic: 1 artifact
+  - link "Staging, Success, 1 job completed, 4 oct 2026 at 22:16 GMT-3":
+    - link "Staging":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=logs&si=58b6074f-2ff4-5217-6d0a-6ea18a1fee5c
+    - generic: 1 job completed
+    - generic "1m 5s 4 oct 2026 at 22:16 GMT-3": 1m 5s
+    - link "1 artifact":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=artifacts&pathAsName=false
+      - generic: 
+      - generic: 1 artifact
+  - link "Production, Success, 1 job completed, 4 oct 2026 at 22:18 GMT-3":
+    - link "Production":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=logs&si=b6dc4367-7e06-5a3d-ba24-bc42d58c2994
+    - generic: 1 job completed
+    - generic "1m 28s 4 oct 2026 at 22:18 GMT-3": 1m 28s
+    - link "1 artifact":
+      - /url: /maamunozs/ISY2201-Pipeline/_build/results?buildId=6&view=artifacts&pathAsName=false
+      - generic: 
+      - generic: 1 artifact
+- paragraph: Exited full-screen mode

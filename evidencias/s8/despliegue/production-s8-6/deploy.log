@@ -1,0 +1,10 @@
+ Container petboutique-s6-api-1  Recreate
+ Container petboutique-s6-api-1  Recreated
+ Container petboutique-s6-web-1  Recreate
+ Container petboutique-s6-web-1  Recreated
+ Container petboutique-s6-api-1  Starting
+ Container petboutique-s6-api-1  Started
+ Container petboutique-s6-web-1  Starting
+ Container petboutique-s6-web-1  Started
+2026-10-05T01:19:07Z
+success environment=production version=s8-6

@@ -1,0 +1,53 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM petboutique/web:s8-5
+ ---> 526f62ecf204
+Step 2/2 : COPY default.conf /etc/nginx/conf.d/default.conf
+ ---> b8dfa00bb8b4
+Successfully built b8dfa00bb8b4
+Successfully tagged petboutique/web:s8-rollback-test
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+curl: (22) The requested URL returned error: 503
+Recuperacion verificada: candidato fallo y la version anterior aprobo 10/10.
+2026-10-05T01:09:18Z
+ Container petboutique-s8-staging-web-1  Stopping
+ Container petboutique-s8-staging-web-1  Stopped
+ Container petboutique-s8-staging-web-1  Removing
+ Container petboutique-s8-staging-web-1  Removed
+ Container petboutique-s8-staging-api-1  Stopping
+ Container petboutique-s8-staging-api-1  Stopped
+ Container petboutique-s8-staging-api-1  Removing
+ Container petboutique-s8-staging-api-1  Removed
+ Network petboutique-s8-staging_backend  Removing
+ Network petboutique-s8-staging_backend  Removed

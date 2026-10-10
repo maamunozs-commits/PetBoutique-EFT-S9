@@ -1,0 +1,48 @@
+● petboutique-monitor.timer - Monitoreo PetBoutique cada minuto
+     Loaded: loaded (/etc/systemd/system/petboutique-monitor.timer; enabled; preset: enabled)
+     Active: active (waiting) since Mon 2026-10-05 01:06:29 UTC; 14min ago
+    Trigger: Mon 2026-10-05 01:21:12 UTC; 16s left
+   Triggers: ● petboutique-monitor.service
+
+Oct 05 01:06:29 vm-petboutique-lab systemd[1]: Started petboutique-monitor.timer - Monitoreo PetBoutique cada minuto.
+NEXT                        LEFT LAST                         PASSED UNIT                      ACTIVATES
+Mon 2026-10-05 01:21:12 UTC  15s Mon 2026-10-05 01:20:12 UTC 44s ago petboutique-monitor.timer petboutique-monitor.service
+
+1 timers listed.
+Pass --all to see loaded but inactive timers, too.
+# /etc/systemd/system/petboutique-monitor.service
+[Unit]
+Description=PetBoutique comprobacion de salud y recursos
+After=docker.service apache2.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/petboutique-s8/monitor.py
+TimeoutStartSec=45
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/log/petboutique-s8
+ProtectHome=true
+PrivateTmp=true
+
+# /etc/systemd/system/petboutique-monitor.timer
+[Unit]
+Description=Monitoreo PetBoutique cada minuto
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=5s
+Persistent=true
+[Install]
+WantedBy=timers.target
+Oct 05 01:18:05 vm-petboutique-lab systemd[1]: Starting petboutique-monitor.service - PetBoutique comprobacion de salud y recursos...
+Oct 05 01:18:08 vm-petboutique-lab python3[1903177]: {"utc": "2026-10-05T01:18:05.712394+00:00", "checks": [{"path": "/health-web", "status": 200, "ok": true, "milliseconds": 34.89}, {"path": "/health", "status": 200, "ok": true, "milliseconds": 27.84}, {"path": "/api/catalog", "status": 200, "ok": true, "milliseconds": 5.13}], "containers": {"exit": 0, "output": "petboutique-s6-web-1 Up 11 minutes (healthy)\npetboutique-s6-api-1 Up 11 minutes", "error": ""}, "resources": {"exit": 0, "output": "petboutique-s8-staging-web-1 0.00% 3.363MiB / 96MiB\npetboutique-s8-staging-api-1 0.01% 28.7MiB / 320MiB\npetboutique-s6-web-1 0.00% 3.477MiB / 96MiB\npetboutique-s6-api-1 0.01% 33.64MiB / 320MiB", "error": ""}, "disk": {"exit": 0, "output": "Filesystem     1024-blocks    Used Available Capacity Mounted on\n/dev/root         63911928 5303276  58592268       9% /", "error": ""}, "ok": true}
+Oct 05 01:18:08 vm-petboutique-lab systemd[1]: petboutique-monitor.service: Deactivated successfully.
+Oct 05 01:18:08 vm-petboutique-lab systemd[1]: Finished petboutique-monitor.service - PetBoutique comprobacion de salud y recursos.
+Oct 05 01:19:07 vm-petboutique-lab systemd[1]: Starting petboutique-monitor.service - PetBoutique comprobacion de salud y recursos...
+Oct 05 01:19:11 vm-petboutique-lab python3[1903954]: {"utc": "2026-10-05T01:19:08.217124+00:00", "checks": [{"path": "/health-web", "status": 200, "ok": true, "milliseconds": 38.01}, {"path": "/health", "status": 200, "ok": true, "milliseconds": 209.29}, {"path": "/api/catalog", "status": 200, "ok": true, "milliseconds": 33.56}], "containers": {"exit": 0, "output": "petboutique-s6-web-1 Up 13 seconds (healthy)\npetboutique-s6-api-1 Up 15 seconds", "error": ""}, "resources": {"exit": 0, "output": "petboutique-s6-web-1 0.00% 3.309MiB / 96MiB\npetboutique-s6-api-1 0.01% 23.41MiB / 320MiB\npetboutique-s8-staging-web-1 0.00% 3.371MiB / 96MiB\npetboutique-s8-staging-api-1 0.00% 23.24MiB / 320MiB", "error": ""}, "disk": {"exit": 0, "output": "Filesystem     1024-blocks    Used Available Capacity Mounted on\n/dev/root         63911928 5303268  58592276       9% /", "error": ""}, "ok": true}
+Oct 05 01:19:11 vm-petboutique-lab systemd[1]: petboutique-monitor.service: Deactivated successfully.
+Oct 05 01:19:11 vm-petboutique-lab systemd[1]: Finished petboutique-monitor.service - PetBoutique comprobacion de salud y recursos.
+Oct 05 01:20:12 vm-petboutique-lab systemd[1]: Starting petboutique-monitor.service - PetBoutique comprobacion de salud y recursos...
+Oct 05 01:20:14 vm-petboutique-lab python3[1904508]: {"utc": "2026-10-05T01:20:12.511498+00:00", "checks": [{"path": "/health-web", "status": 200, "ok": true, "milliseconds": 25.85}, {"path": "/health", "status": 200, "ok": true, "milliseconds": 10.8}, {"path": "/api/catalog", "status": 200, "ok": true, "milliseconds": 40.52}], "containers": {"exit": 0, "output": "petboutique-s6-web-1 Up About a minute (healthy)\npetboutique-s6-api-1 Up About a minute", "error": ""}, "resources": {"exit": 0, "output": "petboutique-s6-web-1 0.00% 3.828MiB / 96MiB\npetboutique-s6-api-1 0.03% 26.74MiB / 320MiB", "error": ""}, "disk": {"exit": 0, "output": "Filesystem     1024-blocks    Used Available Capacity Mounted on\n/dev/root         63911928 5303100  58592444       9% /", "error": ""}, "ok": true}
+Oct 05 01:20:14 vm-petboutique-lab systemd[1]: petboutique-monitor.service: Deactivated successfully.
+Oct 05 01:20:14 vm-petboutique-lab systemd[1]: Finished petboutique-monitor.service - PetBoutique comprobacion de salud y recursos.

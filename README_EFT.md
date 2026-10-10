@@ -13,6 +13,7 @@ La entrega consolida las experiencias 1, 2 y 3: infraestructura de Azure, conten
 - `azure-pipelines-s8.yml`: pipeline registrado y autorizado en Azure DevOps.
 - `evidencias/s8/`: registros históricos de la experiencia 3.
 - `evidencias/s9/`: comprobaciones y ejecución de cierre de la evaluación final.
+- Los archivos MVC y el pipeline de la raíz conservan la implementación de la experiencia 1; `petboutique-s8/` contiene la versión actual en contenedores. `README_ORIGEN.md`, `LICENSE` y `LICENSE-CODE` conservan la atribución y licencias del ejemplo de Microsoft utilizado como punto de partida.
 
 ## Recursos
 
@@ -27,5 +28,19 @@ La entrega consolida las experiencias 1, 2 y 3: infraestructura de Azure, conten
 En Azure Pipelines, abrir `PetBoutique-Exp3-S8`, seleccionar **Run pipeline**, elegir la rama `maamunozs/petboutique-eft-s9` y mantener `runDeployment=true`. La ejecución construye dos imágenes, ejecuta diez comprobaciones, promueve el mismo paquete a staging y producción y publica tres artefactos. El disparador automático se conserva limitado a la rama S8; la validación S9 se inicia explícitamente para que los commits de documentación no redeplieguen el servicio.
 
 No se necesitan nuevas máquinas virtuales ni recursos de pago para esta consolidación. Las credenciales permanecen fuera del repositorio; la clave SSH existente se consume desde Azure DevOps Secure files.
+
+## Preparación de memoria y diagnóstico S9
+
+La primera corrida de cierre, ID 7, se canceló después de aprobar CI porque la VM dejó de responder durante staging. El kernel registró presión de memoria; Production quedó omitida. Para mantener margen durante la coexistencia temporal de ambos entornos se habilitó 1 GiB de swap persistente en el disco existente. `scripts/prepare-vm-s9.sh`, dentro de `petboutique-s8/`, permite repetir esa preparación como root cuando la VM no tenga swap. La espera de salud de cada intento de despliegue quedó acotada a cinco segundos.
+
+La evidencia del incidente y de la preparación se encuentra en `evidencias/s9/`. La swap no sustituye el dimensionamiento de RAM ni convierte el laboratorio en una plataforma de alta disponibilidad.
+
+## Resultado final verificado
+
+La corrida **20261010.2, ID 8**, terminó en **Success** en **4 min 10 s**, con CI, Staging y Production aprobados y tres artefactos publicados. El commit desplegado es `410b430063579f49fa64126c0a37db314f856a1d`; las imágenes son `petboutique/api:s8-8` y `petboutique/web:s8-8`.
+
+Corrida: https://dev.azure.com/maamunozs/ISY2201-Pipeline/_build/results?buildId=8
+
+Los commits posteriores de informe y evidencias son documentación; no cambian el commit desplegado. La rama final en GitHub conserva la misma versión técnica y sus evidencias.
 
 La grabación de Teams la realiza y añade el estudiante por separado.

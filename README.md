@@ -1,35 +1,46 @@
-# Sample ASP.NET Core application for Azure Pipelines docs
+# PetBoutique Informe de Evaluación Final Transversal
 
-For information on how to set up a pipeline for this repository, see [Create your first pipeline](https://docs.microsoft.com/azure/devops/pipelines/get-started-yaml?view=azure-devops).
-For more information on building .NET Core applications, see [.NET Core](https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=azure-devops).
+DevOps ISY2201 · Semana 9 · Grupo 6 · 10 de octubre de 2026.
 
-# Contributing
+Integrantes: Matías Andrés Muñoz Soto y Bastián Ortiz Gómez.
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+La entrega consolida las experiencias 1, 2 y 3: infraestructura de Azure, contenedores web y API, Docker Compose, integración continua, promoción a staging y producción académica, monitoreo y recuperación.
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+## Entrega
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+- `entrega/Informe_EFT_S9_Grupo6_Matias_Munoz_Bastian_Ortiz.docx`: informe sobre la plantilla institucional original.
+- `petboutique-s8/`: aplicación, Dockerfiles, Compose, verificadores y scripts de operación.
+- `azure-pipelines-s8.yml`: pipeline registrado y autorizado en Azure DevOps.
+- `evidencias/s8/`: registros históricos de la experiencia 3.
+- `evidencias/s9/`: comprobaciones y ejecución de cierre de la evaluación final.
+- Los archivos MVC y el pipeline de la raíz conservan la implementación de la experiencia 1; `petboutique-s8/` contiene la versión actual en contenedores. `README_ORIGEN.md`, `LICENSE` y `LICENSE-CODE` conservan la atribución y licencias del ejemplo de Microsoft utilizado como punto de partida.
 
-# Legal Notices
+## Recursos
 
-Microsoft and any contributors grant you a license to the Microsoft documentation and other content
-in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode),
-see the [LICENSE](LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the
-[LICENSE-CODE](LICENSE-CODE) file.
+- Azure DevOps: https://dev.azure.com/maamunozs/ISY2201-Pipeline
+- Azure Repos, rama final: `maamunozs/petboutique-eft-s9`.
+- Pipeline autorizado: `PetBoutique-Exp3-S8`, definición 4. Se reutiliza para validar la rama final y conservar los permisos del archivo seguro.
+- VM: https://portal.azure.com/#@duoc.cl/resource/subscriptions/1fdaaaf8-fac4-468f-a9b0-541fd7376aa9/resourceGroups/rg-petboutique-lab/providers/Microsoft.Compute/virtualMachines/vm-petboutique-lab/overview
+- Servicio: http://20.80.27.195/
 
-Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation
-may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries.
-The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
-Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
+## Repetir la validación
 
-Privacy information can be found at https://privacy.microsoft.com/en-us/
+En Azure Pipelines, abrir `PetBoutique-Exp3-S8`, seleccionar **Run pipeline**, elegir la rama `maamunozs/petboutique-eft-s9` y mantener `runDeployment=true`. La ejecución construye dos imágenes, ejecuta diez comprobaciones, promueve el mismo paquete a staging y producción y publica tres artefactos. El disparador automático se conserva limitado a la rama S8; la validación S9 se inicia explícitamente para que los commits de documentación no redeplieguen el servicio.
 
-Microsoft and any contributors reserve all others rights, whether under their respective copyrights, patents,
-or trademarks, whether by implication, estoppel or otherwise.
+No se necesitan nuevas máquinas virtuales ni recursos de pago para esta consolidación. Las credenciales permanecen fuera del repositorio; la clave SSH existente se consume desde Azure DevOps Secure files.
+
+## Preparación de memoria y diagnóstico S9
+
+La primera corrida de cierre, ID 7, se canceló después de aprobar CI porque la VM dejó de responder durante staging. El kernel registró presión de memoria; Production quedó omitida. Para mantener margen durante la coexistencia temporal de ambos entornos se habilitó 1 GiB de swap persistente en el disco existente. `scripts/prepare-vm-s9.sh`, dentro de `petboutique-s8/`, permite repetir esa preparación como root cuando la VM no tenga swap. La espera de salud de cada intento de despliegue quedó acotada a cinco segundos.
+
+La evidencia del incidente y de la preparación se encuentra en `evidencias/s9/`. La swap no sustituye el dimensionamiento de RAM ni convierte el laboratorio en una plataforma de alta disponibilidad.
+
+## Resultado final verificado
+
+La corrida **20261010.2, ID 8**, terminó en **Success** en **4 min 10 s**, con CI, Staging y Production aprobados y tres artefactos publicados. El commit desplegado es `410b430063579f49fa64126c0a37db314f856a1d`; las imágenes son `petboutique/api:s8-8` y `petboutique/web:s8-8`.
+
+Corrida: https://dev.azure.com/maamunozs/ISY2201-Pipeline/_build/results?buildId=8
+
+Los commits posteriores de informe y evidencias son documentación; no cambian el commit desplegado. La rama final en GitHub conserva la misma versión técnica y sus evidencias.
+
+La grabación de Teams la realiza y añade el estudiante por separado.

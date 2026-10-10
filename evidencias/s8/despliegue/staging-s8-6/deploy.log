@@ -1,0 +1,12 @@
+ Network petboutique-s8-staging_backend  Creating
+ Network petboutique-s8-staging_backend  Created
+ Container petboutique-s8-staging-api-1  Creating
+ Container petboutique-s8-staging-api-1  Created
+ Container petboutique-s8-staging-web-1  Creating
+ Container petboutique-s8-staging-web-1  Created
+ Container petboutique-s8-staging-api-1  Starting
+ Container petboutique-s8-staging-api-1  Started
+ Container petboutique-s8-staging-web-1  Starting
+ Container petboutique-s8-staging-web-1  Started
+2026-10-05T01:17:42Z
+success environment=staging version=s8-6

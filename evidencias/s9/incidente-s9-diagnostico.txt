@@ -1,0 +1,47 @@
+Sat Oct 10 15:52:13 UTC 2026
+ 15:52:13 up 39 days, 16:38,  1 user,  load average: 1.73, 7.43, 4.75
+               total        used        free      shared  buff/cache   available
+Mem:             842         656          65          31         286         186
+Swap:           1023          26         997
+NAME                  TYPE  SIZE  USED PRIO
+/swapfile-petboutique file 1024M 26.3M   -2
+    PID COMMAND           RSS STAT
+ 192646 dockerd         90076 Ssl
+1903706 dotnet          58064 Ssl
+2738881 dotnet          38776 Ssl
+1326214 python3         33616 Sl
+ 192410 containerd      29704 Ssl
+2679691 fwupd           25296 Ssl
+  99844 multipathd      25260 SLsl
+1326087 python3         18556 Ss
+1326084 systemd-journal 17620 S<s
+2738959 containerd-shim 11820 Sl
+2740000 systemd         11688 Ss
+1903758 containerd-shim 10576 Sl
+2739996 sshd            10560 Ss
+    682 networkd-dispat 10368 Ss
+CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS                   PORTS                              NAMES
+1fb80c20c98b   petboutique/web:s8-7   "/docker-entrypoint.…"   9 minutes ago   Up 8 minutes (healthy)   80/tcp, 127.0.0.1:8081->8080/tcp   petboutique-s8-staging-web-1
+7763abac2206   petboutique/api:s8-7   "dotnet PetBoutique.…"   9 minutes ago   Up 9 minutes             8080/tcp                           petboutique-s8-staging-api-1
+6dfaa45a6495   petboutique/web:s8-6   "/docker-entrypoint.…"   5 days ago      Up 5 days (healthy)      80/tcp, 127.0.0.1:8080->8080/tcp   petboutique-s6-web-1
+d2d905050ee2   petboutique/api:s8-6   "dotnet PetBoutique.…"   5 days ago      Up 5 days                8080/tcp                           petboutique-s6-api-1
+Oct 10 15:43:11 vm-petboutique-lab kernel: br-d21b7c09503b: port 1(vetha0e369a) entered blocking state
+Oct 10 15:43:11 vm-petboutique-lab kernel: br-d21b7c09503b: port 1(vetha0e369a) entered disabled state
+Oct 10 15:43:11 vm-petboutique-lab kernel: vetha0e369a: entered allmulticast mode
+Oct 10 15:43:11 vm-petboutique-lab kernel: vetha0e369a: entered promiscuous mode
+Oct 10 15:43:11 vm-petboutique-lab kernel: eth0: renamed from veth1bd841d
+Oct 10 15:43:12 vm-petboutique-lab kernel: br-d21b7c09503b: port 1(vetha0e369a) entered blocking state
+Oct 10 15:43:12 vm-petboutique-lab kernel: br-d21b7c09503b: port 1(vetha0e369a) entered forwarding state
+Oct 10 15:43:29 vm-petboutique-lab kernel: br-d21b7c09503b: port 2(veth9b4189f) entered blocking state
+Oct 10 15:43:30 vm-petboutique-lab kernel: br-d21b7c09503b: port 2(veth9b4189f) entered disabled state
+Oct 10 15:43:30 vm-petboutique-lab kernel: veth9b4189f: entered allmulticast mode
+Oct 10 15:43:30 vm-petboutique-lab kernel: veth9b4189f: entered promiscuous mode
+Oct 10 15:43:44 vm-petboutique-lab kernel: eth0: renamed from veth81c9c33
+Oct 10 15:43:44 vm-petboutique-lab kernel: br-d21b7c09503b: port 2(veth9b4189f) entered blocking state
+Oct 10 15:43:44 vm-petboutique-lab kernel: br-d21b7c09503b: port 2(veth9b4189f) entered forwarding state
+Oct 10 15:46:20 vm-petboutique-lab systemd-journald[1326084]: Under memory pressure, flushing caches.
+Oct 10 15:46:24 vm-petboutique-lab systemd-journald[1326084]: Under memory pressure, flushing caches.
+Oct 10 15:46:53 vm-petboutique-lab systemd-journald[1326084]: Under memory pressure, flushing caches.
+Oct 10 15:49:40 vm-petboutique-lab systemd-journald[1326084]: Under memory pressure, flushing caches.
+Oct 10 15:49:42 vm-petboutique-lab systemd-journald[1326084]: Under memory pressure, flushing caches.
+Oct 10 15:51:00 vm-petboutique-lab kernel: Adding 1048572k swap on /swapfile-petboutique.  Priority:-2 extents:1 across:1048572k 

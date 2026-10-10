@@ -1,0 +1,24 @@
+● petboutique-monitor.timer - Monitoreo PetBoutique cada minuto
+     Loaded: loaded (/etc/systemd/system/petboutique-monitor.timer; enabled; preset: enabled)
+     Active: active (waiting) since Mon 2026-10-05 01:06:29 UTC; 5 days ago
+    Trigger: Sat 2026-10-10 15:57:50 UTC; 45s left
+   Triggers: ● petboutique-monitor.service
+
+Oct 05 01:06:29 vm-petboutique-lab systemd[1]: Started petboutique-monitor.timer - Monitoreo PetBoutique cada minuto.
+NEXT                        LEFT LAST                         PASSED UNIT                      ACTIVATES
+Sat 2026-10-10 15:57:50 UTC  44s Sat 2026-10-10 15:56:50 UTC 15s ago petboutique-monitor.timer petboutique-monitor.service
+
+1 timers listed.
+Pass --all to see loaded but inactive timers, too.
+Oct 10 15:55:33 vm-petboutique-lab systemd[1]: Starting petboutique-monitor.service - PetBoutique comprobacion de salud y recursos...
+Oct 10 15:55:38 vm-petboutique-lab python3[2741559]: {"utc": "2026-10-10T15:55:34.241649+00:00", "checks": [{"path": "/health-web", "status": 200, "ok": true, "milliseconds": 420.68}, {"path": "/health", "status": 200, "ok": true, "milliseconds": 11.76}, {"path": "/api/catalog", "status": 200, "ok": true, "milliseconds": 8.52}], "containers": {"exit": 0, "output": "petboutique-s6-web-1 Up 5 days (healthy)\npetboutique-s6-api-1 Up 5 days", "error": ""}, "resources": {"exit": 0, "output": "petboutique-s8-staging-web-1 0.00% 3.523MiB / 96MiB\npetboutique-s8-staging-api-1 0.01% 43.24MiB / 320MiB\npetboutique-s6-web-1 0.00% 2.215MiB / 96MiB\npetboutique-s6-api-1 0.01% 29.18MiB / 320MiB", "error": ""}, "disk": {"exit": 0, "output": "Filesystem     1024-blocks    Used Available Capacity Mounted on\n/dev/root         63911928 6503460  57392084      11% /", "error": ""}, "ok": true}
+Oct 10 15:55:38 vm-petboutique-lab systemd[1]: petboutique-monitor.service: Deactivated successfully.
+Oct 10 15:55:38 vm-petboutique-lab systemd[1]: Finished petboutique-monitor.service - PetBoutique comprobacion de salud y recursos.
+Oct 10 15:55:46 vm-petboutique-lab systemd[1]: Starting petboutique-monitor.service - PetBoutique comprobacion de salud y recursos...
+Oct 10 15:55:48 vm-petboutique-lab python3[2742151]: {"utc": "2026-10-10T15:55:46.378999+00:00", "checks": [{"path": "/health-web", "status": 200, "ok": true, "milliseconds": 25.64}, {"path": "/health", "status": 200, "ok": true, "milliseconds": 8.68}, {"path": "/api/catalog", "status": 200, "ok": true, "milliseconds": 3.77}], "containers": {"exit": 0, "output": "petboutique-s6-web-1 Up 4 seconds (health: starting)\npetboutique-s6-api-1 Up 4 seconds", "error": ""}, "resources": {"exit": 0, "output": "petboutique-s6-web-1 2.16% 4.586MiB / 96MiB\npetboutique-s6-api-1 1.78% 23.8MiB / 320MiB\npetboutique-s8-staging-web-1 0.00% 4.844MiB / 96MiB\npetboutique-s8-staging-api-1 0.47% 7.531MiB / 320MiB", "error": ""}, "disk": {"exit": 0, "output": "Filesystem     1024-blocks    Used Available Capacity Mounted on\n/dev/root         63911928 6440392  57455152      11% /", "error": ""}, "ok": true}
+Oct 10 15:55:48 vm-petboutique-lab systemd[1]: petboutique-monitor.service: Deactivated successfully.
+Oct 10 15:55:48 vm-petboutique-lab systemd[1]: Finished petboutique-monitor.service - PetBoutique comprobacion de salud y recursos.
+Oct 10 15:56:50 vm-petboutique-lab systemd[1]: Starting petboutique-monitor.service - PetBoutique comprobacion de salud y recursos...
+Oct 10 15:56:51 vm-petboutique-lab python3[2742488]: {"utc": "2026-10-10T15:56:50.488198+00:00", "checks": [{"path": "/health-web", "status": 200, "ok": true, "milliseconds": 22.57}, {"path": "/health", "status": 200, "ok": true, "milliseconds": 2.58}, {"path": "/api/catalog", "status": 200, "ok": true, "milliseconds": 3.19}], "containers": {"exit": 0, "output": "petboutique-s6-web-1 Up About a minute (healthy)\npetboutique-s6-api-1 Up About a minute", "error": ""}, "resources": {"exit": 0, "output": "petboutique-s6-web-1 0.00% 4.613MiB / 96MiB\npetboutique-s6-api-1 0.02% 27.32MiB / 320MiB", "error": ""}, "disk": {"exit": 0, "output": "Filesystem     1024-blocks    Used Available Capacity Mounted on\n/dev/root         63911928 6440216  57455328      11% /", "error": ""}, "ok": true}
+Oct 10 15:56:51 vm-petboutique-lab systemd[1]: petboutique-monitor.service: Deactivated successfully.
+Oct 10 15:56:51 vm-petboutique-lab systemd[1]: Finished petboutique-monitor.service - PetBoutique comprobacion de salud y recursos.

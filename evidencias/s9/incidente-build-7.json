@@ -1,0 +1,13 @@
+{
+  "id": 7,
+  "number": "20261010.1",
+  "result": "Canceled",
+  "duration": "10 min 5 s",
+  "commit": "491a63fb0baf928dc87a17b550fce1a2f8a7b286",
+  "stages": {"CI": "Success", "Staging": "Canceled", "Production": "Skipped"},
+  "symptom": "La VM dejó de responder por SSH y HTTP durante la promoción a staging",
+  "diagnosis": "El journal del kernel registró Under memory pressure, flushing caches",
+  "correction": "1 GiB de swap persistente y timeout de cinco segundos en la espera HTTP de deploy.sh",
+  "followup_build": 8,
+  "url": "https://dev.azure.com/maamunozs/ISY2201-Pipeline/_build/results?buildId=7"
+}

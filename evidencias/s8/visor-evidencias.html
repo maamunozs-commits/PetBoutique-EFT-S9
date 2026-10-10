@@ -1,0 +1,11 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Evidencia real PetBoutique S8</title>
+<style>body{font:20px Arial;color:#253746;margin:20px;background:white}main{width:1100px;margin:auto}h1{font-size:30px;margin:0 0 10px}h2{font-size:24px;margin:16px 0 8px}p{margin:6px 0}table{border-collapse:collapse;width:100%;font-size:20px}td,th{text-align:left;border-bottom:1px solid #d5dce1;padding:5px}th{background:#f1f4f6}code{font:19px Arial}small{font-size:17px}</style><main>
+<h1>PetBoutique S8  Registros de validación</h1>
+<p>Pipeline ID 6 · Versión s8-6 · Producción académica</p>
+<p><strong>10 de 10 pruebas aprobadas</strong> · Registro UTC 2026-10-05T01:19:00Z</p>
+<table><thead><tr><th>Solicitud HTTP</th><th>Esperado</th><th>Recibido</th><th>Resultado</th></tr></thead><tbody><tr><td>/</td><td>200</td><td>200</td><td>Aprobado</td></tr><tr><td>/health</td><td>200</td><td>200</td><td>Aprobado</td></tr><tr><td>/health-web</td><td>200</td><td>200</td><td>Aprobado</td></tr><tr><td>/missing</td><td>404</td><td>404</td><td>Aprobado</td></tr><tr><td>/api/catalog</td><td>200</td><td>200</td><td>Aprobado</td></tr><tr><td>/api/catalog/quote?productId=1&amp;quantity=2</td><td>200</td><td>200</td><td>Aprobado</td></tr><tr><td>/api/catalog/quote?productId=1&amp;quantity=0</td><td>400</td><td>400</td><td>Aprobado</td></tr><tr><td>/api/catalog/quote?productId=1&amp;quantity=11</td><td>400</td><td>400</td><td>Aprobado</td></tr><tr><td>/api/catalog/quote?productId=999&amp;quantity=1</td><td>404</td><td>404</td><td>Aprobado</td></tr><tr><td>/api/catalog/quote?productId=1&amp;quantity=x</td><td>400</td><td>400</td><td>Aprobado</td></tr></tbody></table>
+<h2>Monitoreo periódico en la VM</h2><p>14 muestras correctas de 14 · Última muestra 2026-10-05T01:20:12.511498+00:00</p>
+<table><tr><th>Endpoint</th><th>HTTP</th><th>Tiempo de respuesta</th></tr><tr><td>/health-web</td><td>200</td><td>25.85 ms</td></tr><tr><td>/health</td><td>200</td><td>10.8 ms</td></tr><tr><td>/api/catalog</td><td>200</td><td>40.52 ms</td></tr></table>
+<p><code>petboutique-s6-web-1 0.00% 3.828MiB / 96MiB<br>petboutique-s6-api-1 0.03% 26.74MiB / 320MiB</code></p>
+<small>Fuente: production-tests.json y health.jsonl obtenidos de vm-petboutique-lab. Visor local de registros reales; no corresponde al portal de Azure.</small>
+</main></html>

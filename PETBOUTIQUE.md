@@ -1,6 +1,6 @@
-# PetBoutique: laboratorio de continuidad semanas 1, 2 y 3
+# PetBoutique Antecedente de planificación de la experiencia 1
 
-Caso simulado de comercio electrónico de productos para mascotas. Se trabaja ahora como recuperación de las actividades formativas no realizadas/entregadas; no acredita una ejecución histórica ni colaboración de personas no identificadas.
+Este archivo conserva los criterios y la propuesta de trabajo de la experiencia 1. La implementación y la validación de cierre de las tres experiencias se documentan en README.md y en el informe final de la carpeta entrega; los resultados se acreditan mediante corridas y registros fechados.
 
 El alcance implementado es catálogo y cotización de demostración. No hay pago, registro de clientes ni persistencia de pedidos. Los precios y productos son ficticios. No usar como tienda de producción.
 

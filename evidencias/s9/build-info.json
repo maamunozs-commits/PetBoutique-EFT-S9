@@ -1,0 +1,21 @@
+{
+  "id": 8,
+  "number": "20261010.2",
+  "pipeline": "PetBoutique-Exp3-S8",
+  "definition_id": 4,
+  "result": "Success",
+  "duration": "4 min 10 s",
+  "commit": "410b430063579f49fa64126c0a37db314f856a1d",
+  "branch": "maamunozs/petboutique-eft-s9",
+  "date_local": "2026-10-10",
+  "timezone": "America/Santiago",
+  "start_display_local": "12:51 GMT-3",
+  "trigger": "manual",
+  "runDeployment": true,
+  "artifacts": 3,
+  "stages": {"CI": "Success", "Staging": "Success", "Production": "Success"},
+  "stage_durations": {"CI": "1 min 26 s", "Staging": "54 s", "Production": "56 s"},
+  "images": ["petboutique/api:s8-8", "petboutique/web:s8-8"],
+  "url": "https://dev.azure.com/maamunozs/ISY2201-Pipeline/_build/results?buildId=8",
+  "source": "Estado y duraciones observados en la interfaz de Azure DevOps; datos de ejecución contrastados con la VM y los registros de pruebas"
+}

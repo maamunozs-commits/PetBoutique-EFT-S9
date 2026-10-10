@@ -1,0 +1,8 @@
+Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+no label, UUID=353869aa-eb22-4642-8d9f-30956ba85ce8
+Sat Oct 10 15:51:00 UTC 2026
+               total        used        free      shared  buff/cache   available
+Mem:             842         696          55          32         256         146
+Swap:           1023           0        1023
+NAME                  TYPE  SIZE USED PRIO
+/swapfile-petboutique file 1024M 804K   -2

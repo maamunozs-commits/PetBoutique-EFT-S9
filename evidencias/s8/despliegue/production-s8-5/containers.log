@@ -1,0 +1,128 @@
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/health - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'Health checks'
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'Health checks'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/health - 200 - text/plain 49.4089ms
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/health - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'Health checks'
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'Health checks'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/health - 200 - text/plain 1.5545ms
+web-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+web-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+web-1  | 10-listen-on-ipv6-by-default.sh: info: can not modify /etc/nginx/conf.d/default.conf (read-only file system?)
+web-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+web-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: using the "epoll" event method
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: nginx/1.30.5
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: OS: Linux 6.17.0-1022-azure
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: start worker processes
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: start worker process 21
+web-1  | 2026/10/05 01:06:19 [notice] 1#1: start worker process 22
+web-1  | 2026/10/05 01:06:20 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: _, request: "GET /health HTTP/1.1", upstream: "http://172.18.0.2:8080/health", host: "127.0.0.1:8080"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:20 +0000] "GET /health HTTP/1.1" 502 157 "-" "curl/8.5.0" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /health HTTP/1.1" 200 17 "-" "curl/8.5.0" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET / HTTP/1.1" 200 1233 "-" "Python-urllib/3.12" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /health HTTP/1.1" 200 17 "-" "Python-urllib/3.12" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /missing HTTP/1.1" 404 153 "-" "Python-urllib/3.12" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /api/catalog HTTP/1.1" 200 175 "-" "Python-urllib/3.12" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /api/catalog/quote?productId=1&quantity=2 HTTP/1.1" 200 106 "-" "Python-urllib/3.12" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /api/catalog/quote?productId=1&quantity=0 HTTP/1.1" 400 59 "-" "Python-urllib/3.12" "-"
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /api/catalog/quote?productId=1&quantity=11 HTTP/1.1" 400 59 "-" "Python-urllib/3.12" "-"
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/api/catalog - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Get (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+api-1  |       Route matched with {action = "Get", controller = "Catalog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller pipelines_dotnet_core.Controllers.CatalogController (PetBoutique.Api).
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+api-1  |       Executing OkObjectResult, writing value of type 'pipelines_dotnet_core.Controllers.CatalogController+Product[]'.
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+api-1  |       Executed action pipelines_dotnet_core.Controllers.CatalogController.Get (PetBoutique.Api) in 29.0169ms
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Get (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/api/catalog - 200 - application/json;+charset=utf-8 55.5138ms
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=2 - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+api-1  |       Route matched with {action = "Quote", controller = "Catalog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Quote(Int32, Int32) on controller pipelines_dotnet_core.Controllers.CatalogController (PetBoutique.Api).
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+api-1  |       Executing OkObjectResult, writing value of type '<>f__AnonymousType1`6[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+api-1  |       Executed action pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api) in 19.4179ms
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=2 - 200 - application/json;+charset=utf-8 25.2021ms
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=0 - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+api-1  |       Route matched with {action = "Quote", controller = "Catalog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Quote(Int32, Int32) on controller pipelines_dotnet_core.Controllers.CatalogController (PetBoutique.Api).
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+api-1  |       Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+api-1  |       Executed action pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api) in 1.0506ms
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=0 - 400 - application/json;+charset=utf-8 1.2824ms
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=11 - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+api-1  |       Route matched with {action = "Quote", controller = "Catalog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Quote(Int32, Int32) on controller pipelines_dotnet_core.Controllers.CatalogController (PetBoutique.Api).
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+api-1  |       Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+api-1  |       Executed action pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api) in 0.1202ms
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=11 - 400 - application/json;+charset=utf-8 0.2469ms
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=999&quantity=1 - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+api-1  |       Route matched with {action = "Quote", controller = "Catalog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Quote(Int32, Int32) on controller pipelines_dotnet_core.Controllers.CatalogController (PetBoutique.Api).
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+api-1  |       Executing NotFoundObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+api-1  |       Executed action pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api) in 0.1952ms
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /api/catalog/quote?productId=999&quantity=1 HTTP/1.1" 404 44 "-" "Python-urllib/3.12" "-"
+web-1  | 172.18.0.1 - - [05/Oct/2026:01:06:22 +0000] "GET /api/catalog/quote?productId=1&quantity=x HTTP/1.1" 400 257 "-" "Python-urllib/3.12" "-"
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=999&quantity=1 - 404 - application/json;+charset=utf-8 0.3133ms
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+api-1  |       Request starting HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=x - - -
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+api-1  |       Executing endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+api-1  |       Route matched with {action = "Quote", controller = "Catalog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Quote(Int32, Int32) on controller pipelines_dotnet_core.Controllers.CatalogController (PetBoutique.Api).
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+api-1  |       Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+api-1  | info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+api-1  |       Executed action pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api) in 20.9695ms
+api-1  | info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+api-1  |       Executed endpoint 'pipelines_dotnet_core.Controllers.CatalogController.Quote (PetBoutique.Api)'
+api-1  | info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+api-1  |       Request finished HTTP/1.1 GET http://api:8080/api/catalog/quote?productId=1&quantity=x - 400 - application/problem+json;+charset=utf-8 21.1867ms

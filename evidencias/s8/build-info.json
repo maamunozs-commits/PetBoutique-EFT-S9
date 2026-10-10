@@ -1,0 +1,15 @@
+{
+  "id": 6,
+  "number": "20261005.3",
+  "name": "PetBoutique-Exp3-S8",
+  "result": "succeeded",
+  "duration": "4 min 31 s",
+  "commit": "649b776430e91cd88f8922f7acd3898f07ba20a3",
+  "url": "https://dev.azure.com/maamunozs/ISY2201-Pipeline/_build/results?buildId=6",
+  "date_local": "2026-10-04",
+  "ci_duration": "1 min 26 s",
+  "staging_duration": "1 min 5 s",
+  "production_duration": "1 min 28 s",
+  "artifacts": 3,
+  "branch": "maamunozs/petboutique-exp3-s8"
+}
